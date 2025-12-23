@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Sklep PalionowoMC.PL</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    margin: 0;
+}
+
+header {
+    background: #020617;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.card {
+    background: #020617;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.price {
+    color: #22c55e;
+    font-size: 24px;
+}
+
+button {
+    background: #38bdf8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #0ea5e9;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background: #020617;
+    padding: 30px;
+    max-width: 400px;
+    margin: 10% auto;
+    border-radius: 12px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Sklep PalionowoMC.PL</h1>
+<p>Zakup rang i dostępu</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>🎟️ Wejściówka</h2>
+        <p>Dostęp do serwera</p>
+        <div class="price">15 zł</div>
+        <button onclick="openModal('Wejściówka - 15 zł')">Kup teraz</button>
+    </div>
+
+    <div class="card">
+        <h2>🗺️ Mapa PALIONOWOMC.PL</h2>
+        <p>Specjalne mapy</p>
+        <div class="price">60 zł</div>
+        <button onclick="openModal('Mapy - 60 zł')">Kup teraz</button>
+    </div>
+
+    <div class="card">
+        <h2>👥 Ranga Ekipa</h2>
+        <p>Ranga na serwerze</p>
+        <div class="price">200 zł</div>
+        <button onclick="openModal('Ranga Ekipa - 200 zł')">Kup teraz</button>
+    </div>
+
+    <div class="card">
+        <h2>👑 Operator</h2>
+        <p>Komenda /op </p>
+        <div class="price">700 zł</div>
+        <button onclick="openModal('OP - 700 zł')">Kup teraz</button>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3 id="productName"></h3>
+
+        <label>Nick Minecraft</label>
+        <input type="text" id="nick" placeholder="np. Steve123" required>
+
+        <label>Metoda płatności</label>
+        <select disabled>
+            <option>PaySafeCard (PSC)</option>
+        </select>
+
+        <button onclick="goDiscord()">Przejdź na Discord</button>
+        <br><br>
+        <button onclick="closeModal()">Anuluj</button>
+    </div>
+</div>
+
+<footer>
+<p>Serwer nie jest powiązany z Mojang ani Microsoft.</p>
+</footer>
+
+<script>
+let product = "";
+
+function openModal(name) {
+    product = name;
+    document.getElementById("productName").innerText = name;
+    document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function goDiscord() {
+    const nick = document.getElementById("nick").value;
+
+    if (nick === "") {
+        alert("Wpisz nick Minecraft!");
+        return;
+    }
+
+    // PODMIEŃ NA SWÓJ LINK DO DISCORDA
+    const discordLink = "https://discord.gg/VQadH26RCh";
+
+    window.location.href = discordLink;
+}
+</script>
+
+</body>
+</html>
